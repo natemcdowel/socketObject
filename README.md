@@ -16,7 +16,7 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 
 	1. Extend the generic game object class that all in-game objects inherit from.  By default, when using MelonJS, this is:
 
-		me.socketObjectEntity = me.ObjectEntity.extend({
+		"me.socketObjectEntity = me.ObjectEntity.extend({"
 
 	2. Any game objects that inherited from the generic game object class (such as Enemy, Item, Player classes) should extend 'me.socketObjectEntity'.  Example:
 
