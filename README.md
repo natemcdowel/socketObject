@@ -88,3 +88,35 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 				this.parent();
 				return true;
 				</pre>
+
+- <strong>socketClient.js</strong>
+	
+	1. Include socketClient.js in your index.html file after the engine code.  Example:
+	
+		<pre>
+			<script type="text/javascript" src="build/melonJS-0.9.7.js"></script>
+			<script type="text/javascript" src="entities/screen.js"></script>
+			<script type="text/javascript" src="entities/socketObjectEntity.js"></script>
+			<script type="text/javascript" src="entities/playerEntity.js"></script>
+			<script type="text/javascript" src="entities/player2Entity.js"></script>
+		</pre>
+
+	2. Replace var addObjectToClient = function(serverObject) { code with engine-specific code for adding game objects.
+		<pre>
+			var addObjectToClient = function(serverObject) {
+				// Engine-specific code for adding objects passed from the server to the game
+				var hostedEntity = new window[serverObject.settings.entityName](
+						serverObject.pos.x,
+						serverObject.pos.y,
+						{
+							image: serverObject.settings.image,
+							spritewidth: serverObject.settings.spritewidth,
+							spriteheight: serverObject.settings.spriteheight,
+							GUID: serverObject.GUID
+						}
+				);
+			 	me.game.add(hostedEntity, enemyZ++);
+				me.game.sort();
+			};
+		</pre>
+	
