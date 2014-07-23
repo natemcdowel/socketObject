@@ -1,42 +1,86 @@
-socketObject
-============
-
-- Framework for developing action-based games using Node.js and Socket.io.
-- Extend any game object with socketObjectEntity.js to pass as a socketObject
-- Host / Slave networking model, hosted from clientid == 0 machine (You'll need to open a port on your router)
-- Uses position interpolation to compensate for latency
-- Tutorial is coming soon!
-
-
-GAME OBJECTS
---------------
-
-INIT of object
-
-- settings.sendSocket = true;
-- settings.entityName = 'SkullEnemyEntity';
-- if (clientid == host) {
-   this.socketInit();
-  }
-
-REMOVE of object
-- this.socketRemoveObject();
-
-UPDATE loop of object
-- if (clientid == host) {
-		// Host controls logic for behavior of object
-  }
-  else {
-    // Slave simply reads position from socketObjects
-  }
-
-- this.updateSocketEntity();
-
-
-
 PLAYER OBJECTS
 ----------------
 
 - Each client (host and slave) sends player position at game loop interval
 - Server.js adds these to socketObjects array to be parsed into game like any other object
   (Other than being tagged by clientid to know who to add as socketPlayerEntity)
+
+
+
+TUTORIAL
+------------------
+
+We'll need to walk through a few steps to set up your game for use with socketObject
+
+- socketObjectEntity.js
+
+	1. Extend the generic game object class that all in-game objects inherit from.  By default, when using MelonJS, this is:
+
+		me.socketObjectEntity = me.ObjectEntity.extend({
+
+	2. Any game objects that inherited from the generic game object class (such as Enemy, Item, Player classes) should extend 'me.socketObjectEntity'.  Example:
+
+		var AllEnemyEntity = me.socketObjectEntity.extend({
+
+	3. Replace remove : function() with engine-specific code. Example:
+
+		remove : function() {
+			// Replace with engine-specific code for removing game objects
+			me.game.remove(this);
+		},
+
+	4. Define the keys and objects that you want to pass in defindSocketObjectStructure : function(). GUID is required. Example:
+
+		defineSocketObjectStructure : function () {
+		 	this.socketObjectStructure =
+			{
+				GUID: 'GUID',
+				pos: true,
+				vel: true,
+				settings: true,
+				facing: true,
+				currentAnim: true
+			}
+		},
+
+    The GUID property should be named to the key of the game object.  If the game object is "this.id", change to "GUID:'id'"
+
+- socketObjects (Not playerObjects) inheriting from socketObjectEntity.js
+
+	1. In the constructor of the class, to initialize a socketObject:
+
+		- Define:
+			- this.settings.sendSocket = true;
+			- this.settings.entityName = '<classname>';
+
+				Example:
+
+					"this.settings.entityName = 'SkullEnemyEntity'"
+
+					for a class named
+
+					"var SkullEnemyEntity = AllEnemyEntity.extend({"
+
+		- At the bottom of the constructor:
+
+				if (clientid == host) {
+					this.socketInit();
+				}
+
+	2. In the update loop of these objects, wrap all position / velocity generating logic in:
+
+		- if (clientid == host) {
+				// Host controls logic for behavior of object
+	  	}
+
+	  - Place this function before collision is checked and update function returns:
+
+	  	- this.updateSocketEntity();
+
+	  	- Example:
+
+			  // check & update movement
+				this.updateSocketEntity();
+				this.updateMovement();
+				this.parent();
+				return true;
