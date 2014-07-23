@@ -1,8 +1,11 @@
 socketObject
 ============
 
-Framework for developing action-based games using Node.js and Socket.io
-Tutorial is coming soon!
+- Framework for developing action-based games using Node.js and Socket.io.
+- Extend any game object with socketObjectEntity.js to pass as a socketObject
+- Host / Slave networking model, hosted from clientid == 0 machine (You'll need to open a port on your router)
+- Uses position interpolation to compensate for latency
+- Tutorial is coming soon!
 
 
 GAME OBJECTS
