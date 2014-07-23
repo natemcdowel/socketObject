@@ -47,7 +47,7 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 		</pre>
     The GUID property should be named to the key of the game object.  If the game object is "this.id", change to "GUID:'id'"
 
-- socketObjects (Not playerObjects) inheriting from socketObjectEntity.js
+- <strong>game objects inheriting from socketObjectEntity.js</strong>
 
 	1. In the constructor of the class, to initialize a socketObject:
 
