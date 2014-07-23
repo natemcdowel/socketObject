@@ -12,7 +12,7 @@ TUTORIAL
 
 We'll need to walk through a few steps to set up your game for use with socketObject
 
-- socketObjectEntity.js
+- <strong>socketObjectEntity.js</strong>
 
 	1. Extend the generic game object class that all in-game objects inherit from.  By default, when using MelonJS, this is:
 
