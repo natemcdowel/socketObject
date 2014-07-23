@@ -93,7 +93,7 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 	
 	1. Include socketClient.js in your index.html file before the end of the body tag:
 
-		- <pre><script type='text/javascript' src="socketClient.js"></script></pre>
+		- '<script type='text/javascript' src="socketClient.js"></script>'
 
 	2. Replace var addObjectToClient = function(serverObject) { code with engine-specific code for adding game objects.
 		<pre>
