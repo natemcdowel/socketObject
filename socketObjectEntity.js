@@ -1,5 +1,6 @@
 /**
  * Socket functions<br>
+ * Use this to extend your game objects
  * socketObjects AND playerObjects are sent in an interval in socketClient.js
  *
  */
