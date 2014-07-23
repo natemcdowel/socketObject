@@ -93,7 +93,7 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 	
 	1. Include socketClient.js in your index.html file after the engine code.  Example:
 	
-	        <script type="text/javascript" src="build/melonJS-0.9.7.js"></script>
+	         <script type="text/javascript" src="build/melonJS-0.9.7.js"></script>
 		<script type="text/javascript" src="entities/screen.js"></script>
 		<script type="text/javascript" src="entities/socketObjectEntity.js"></script>
 		<script type="text/javascript" src="entities/playerEntity.js"></script>
