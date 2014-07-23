@@ -70,7 +70,7 @@ io.sockets.on('connection', function (socket) {
   socket.emit('assignid',i);
   i++
 
-  // Enemy Data stored in server from Host client
+  // socketObject data stored in server from Host client
   socket.on('updateobjects', function (objects) {
     socketObjects = objects;
   });
@@ -96,7 +96,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('playersaddobject', function (object) {
     playerObjects.push(object);
   });
-
+  
   socket.on('playersupdatedobject', function (object) {
     var i = checkAbstractObjectGUID(object, playerObjects);
     if (i || i === 0) {
