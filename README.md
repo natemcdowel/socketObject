@@ -20,17 +20,19 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 
 	2. Any game objects that inherited from the generic game object class (such as Enemy, Item, Player classes) should extend 'me.socketObjectEntity'.  Example:
 
-		var AllEnemyEntity = me.socketObjectEntity.extend({
+		<pre>var AllEnemyEntity = me.socketObjectEntity.extend({</pre>
 
 	3. Replace remove : function() with engine-specific code. Example:
 
-		remove : function() {
+		<pre>remove : function() {
 			// Replace with engine-specific code for removing game objects
 			me.game.remove(this);
 		},
+		</pre>
+
 
 	4. Define the keys and objects that you want to pass in defindSocketObjectStructure : function(). GUID is required. Example:
-
+		<pre>
 		defineSocketObjectStructure : function () {
 		 	this.socketObjectStructure =
 			{
@@ -42,7 +44,7 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 				currentAnim: true
 			}
 		},
-
+		</pre>
     The GUID property should be named to the key of the game object.  If the game object is "this.id", change to "GUID:'id'"
 
 - socketObjects (Not playerObjects) inheriting from socketObjectEntity.js
