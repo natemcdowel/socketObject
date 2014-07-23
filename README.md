@@ -68,20 +68,23 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 					this.socketInit();
 				}
 
-	2. In the update loop of these objects, wrap all position / velocity generating logic in:
+	2. In the update loop of these objects, wrap all position / velocity generating logic in this condition:
 
-		- if (clientid == host) {
-				// Host controls logic for behavior of object
+		<pre>
+		if (clientid == host) {
+			// Host controls logic for behavior of object
 	  	}
+	  	</pre>
 
 	  - Place this function before collision is checked and update function returns:
-
-	  	- this.updateSocketEntity();
+		
+	  	<pre>this.updateSocketEntity();</pre>
 
 	  	- Example:
-
-			  // check & update movement
+			   <pre>
+			   // check & update movement
 				this.updateSocketEntity();
 				this.updateMovement();
 				this.parent();
 				return true;
+				</pre>
