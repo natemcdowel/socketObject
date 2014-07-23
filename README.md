@@ -52,16 +52,15 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 	1. In the constructor of the class, to initialize a socketObject:
 
 		- Define:
-			<pre>- this.settings.sendSocket = true;</pre>
-			<pre>- this.settings.entityName = _className;</pre>
+			<pre>this.settings.sendSocket = true;</pre>
+			<pre>this.settings.entityName = _className;</pre>
 
-				Example:
+			Example:
+			<pre>this.settings.entityName = 'SkullEnemyEntity';<pre>
 
-					"this.settings.entityName = 'SkullEnemyEntity'"
+			for a class named
 
-					for a class named
-
-					"var SkullEnemyEntity = AllEnemyEntity.extend({"
+			<pre>var SkullEnemyEntity = AllEnemyEntity.extend({</pre>
 
 		- At the bottom of the constructor:
 
