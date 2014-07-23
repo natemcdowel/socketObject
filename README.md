@@ -112,5 +112,9 @@ We'll need to walk through a few steps to set up your game for use with socketOb
 			};
 		</pre>
 
-	3. Replace var findGameObjectByGUID = function(GUID) { code , code with engine-specific code for finding game objects 		by Id
-	
+	3. Replace var findGameObjectByGUID = function(GUID) { code , code with engine-specific code for finding game objects 		by Id. Example:
+		<pre>var findGameObjectByGUID = function(GUID) {
+			// Engine-specific code for finding game objects based on GUID
+			return me.game.getEntityByGUID(GUID);
+		}</pre>
+			
